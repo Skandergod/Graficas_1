@@ -1,0 +1,3 @@
+﻿  Line.cpp
+C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Line.cpp(35,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  ICG - Plantilla.vcxproj -> C:\Users\skandergod\Desktop\ICG--Proyecto1\x64\Debug\ICG - Plantilla.exe
