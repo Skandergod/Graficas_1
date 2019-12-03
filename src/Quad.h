@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Figure.h"
+#include "Line.h"
 
-class CQuad : public CFigure
+class CQuad : public CLine
 {
 	public:
 		CQuad();

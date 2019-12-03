@@ -1,3 +1,6 @@
-﻿  Line.cpp
-C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Line.cpp(35,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  Quad.cpp
+C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,24): warning C4101: 'yMin': unreferenced local variable
+C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,6): warning C4101: 'xMax': unreferenced local variable
+C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,12): warning C4101: 'yMax': unreferenced local variable
+C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,18): warning C4101: 'xMin': unreferenced local variable
   ICG - Plantilla.vcxproj -> C:\Users\skandergod\Desktop\ICG--Proyecto1\x64\Debug\ICG - Plantilla.exe
