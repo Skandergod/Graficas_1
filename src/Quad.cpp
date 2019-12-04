@@ -31,10 +31,10 @@ void CQuad::display()
 	b[1][0] = (int)mVertices[1][0];
 	b[1][1] = (int)mVertices[1][1];
 
-	drawLine(b[0][0], b[0][1], b[1][0], b[0][1], 0, 0);
-	drawLine(b[0][0], b[0][1], b[0][0], b[1][1], 0, 0);
-	drawLine(b[1][0], b[0][1], b[1][0], b[1][1], 0, 0);
-	drawLine(b[0][0], b[1][1], b[1][0], b[1][1], 0, 0);
+	CLine::drawLine(b[0][0], b[0][1], b[1][0], b[0][1], 0, 0);
+	CLine::drawLine(b[0][0], b[0][1], b[0][0], b[1][1], 0, 0);
+	CLine::drawLine(b[1][0], b[0][1], b[1][0], b[1][1], 0, 0);
+	CLine::drawLine(b[0][0], b[1][1], b[1][0], b[1][1], 0, 0);
 
 	
 	/*glBegin(GL_POLYGON);

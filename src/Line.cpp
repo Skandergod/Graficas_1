@@ -43,12 +43,12 @@ void CLine::drawLine(int x1, int y1, int x2, int y2, int color, int form) {
 		b[i] = new GLint[2];
 	}
 
-	glColor3fv(mColor);
+	glColor3f(0.0f,1.0f,0.0f);
 
-	b[0][0] = (int)mVertices[0][0];
-	b[0][1] = (int)mVertices[0][1];
-	b[1][0] = (int)mVertices[1][0];
-	b[1][1] = (int)mVertices[1][1];
+	b[0][0] = x1;
+	b[0][1] = y1;
+	b[1][0] = x2;
+	b[1][1] = y2;
 
 	dx = b[1][0] - b[0][0];
 	dy = b[1][1] - b[0][1];

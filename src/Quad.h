@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Figure.h"
 #include "Line.h"
 
-class CQuad : public CLine
+class CQuad : public CFigure
 {
+	CLine lines[4];
 	public:
 		CQuad();
 		~CQuad();
