@@ -1,6 +1,12 @@
-﻿  Quad.cpp
-C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,24): warning C4101: 'yMin': unreferenced local variable
-C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,6): warning C4101: 'xMax': unreferenced local variable
-C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,12): warning C4101: 'yMax': unreferenced local variable
-C:\Users\skandergod\Desktop\ICG--Proyecto1\src\Quad.cpp(22,18): warning C4101: 'xMin': unreferenced local variable
-  ICG - Plantilla.vcxproj -> C:\Users\skandergod\Desktop\ICG--Proyecto1\x64\Debug\ICG - Plantilla.exe
+﻿  Figure.cpp
+  Line.cpp
+  Main.cpp
+  Quad.cpp
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Quad.cpp(22,24): warning C4101: 'yMin': unreferenced local variable
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Quad.cpp(22,6): warning C4101: 'xMax': unreferenced local variable
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Quad.cpp(22,12): warning C4101: 'yMax': unreferenced local variable
+  UserInterface.cpp
+  Generating Code...
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Quad.cpp(22,18): warning C4101: 'xMin': unreferenced local variable
+  LINK : C:\Users\Daniel\Desktop\Workbench\Graficas_1\x64\Debug\ICG - Plantilla.exe not found or not built by the last incremental link; performing full link
+  ICG - Plantilla.vcxproj -> C:\Users\Daniel\Desktop\Workbench\Graficas_1\x64\Debug\ICG - Plantilla.exe

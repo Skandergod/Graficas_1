@@ -9,5 +9,6 @@ class CQuad : public CFigure
 		CQuad();
 		~CQuad();
 		void display();
+		static void drawQuad(float** mVertices, int color, int form);
 };
 
