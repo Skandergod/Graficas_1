@@ -128,7 +128,6 @@
     <ClInclude Include="..\src\Main.h" />
     <ClInclude Include="..\src\Quad.h" />
     <ClInclude Include="..\src\UserInterface.h" />
-    <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Circle.cpp" />
@@ -137,7 +136,6 @@
     <ClCompile Include="..\src\Main.cpp" />
     <ClCompile Include="..\src\Quad.cpp" />
     <ClCompile Include="..\src\UserInterface.cpp" />
-    <ClCompile Include="Circle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

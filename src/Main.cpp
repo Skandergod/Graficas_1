@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "Line.h"
 #include "Quad.h"
+#include "Circle.h"
 #include "UserInterface.h"
 
 using std::vector;
@@ -101,19 +102,24 @@ void keyInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 			std::cout << "esto es una prueba \n";
 			break;
 
+		case GLFW_KEY_C:
+			figureSelected = CIRCLE;
+
+			break;
+
 		case GLFW_KEY_P:
 			figureSelected = NONE;
-			userInterface->hide();
+			//userInterface->hide();
 			break;
 
 		case GLFW_KEY_L:
 			figureSelected = LINE;
-			userInterface->hide();
+			//userInterface->hide();
 			break;
 
 		case GLFW_KEY_Q:
 			figureSelected = QUAD;
-			userInterface->hide();
+			//userInterface->hide();
 			break;
 		}
 	}
@@ -143,12 +149,21 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 
 			gPress = true;
 		}
-		else
+		else if(figureSelected == QUAD)
 		{
 			CQuad *quad = new CQuad();
 			quad->setVertex(0, ax, ay);
 			quad->setVertex(1, ax, ay);
 			figures.push_back(quad);
+
+			gPress = true;
+		}
+		else
+		{
+			Ccircle* circle = new Ccircle();
+			circle->setVertex(0, ax, ay);
+			circle->setVertex(1, ax, ay);
+			figures.push_back(circle);
 
 			gPress = true;
 		}
