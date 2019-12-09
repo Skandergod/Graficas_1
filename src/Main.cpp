@@ -3,7 +3,7 @@
 #include "Quad.h"
 #include "Circle.h"
 #include "UserInterface.h"
-
+#include <iostream>
 using std::vector;
 
 GLFWwindow *gWindow;
@@ -13,13 +13,13 @@ CUserInterface * userInterface;
 vector <CFigure *> figures;
 FigureType figureSelected;
 int picked;
-
-void pick(int x, int y)
+float ax1, ay1;
+int pick(int x, int y)
 {
 	picked = -1;
 	userInterface->hide();
 
-	for (unsigned int i = 0; i < figures.size(); i++)
+	for (int i = figures.size()-1; i >= 0; i--)
 	{
 		float *v1 = figures[i]->getVertex(0);
 		float *v2 = figures[i]->getVertex(1);
@@ -48,9 +48,13 @@ void pick(int x, int y)
 			else
 				userInterface->setFigureType("Quad");
 
+
+			return picked;
 			break;
 		}
 	}
+
+	return -1;
 }
 
 void updateUserInterface()
@@ -104,7 +108,6 @@ void keyInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 
 		case GLFW_KEY_C:
 			figureSelected = CIRCLE;
-
 			break;
 
 		case GLFW_KEY_P:
@@ -137,14 +140,22 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 	{
 		float ax = float(x);
 		float ay = gHeight - float(y);
-
-		if (figureSelected == NONE)
-			pick(int(ax), int(ay));
+		
+		if (figureSelected == NONE) {
+			int picked = pick(int(ax), int(ay));
+			ax1 = float(x);
+			ay1 = gHeight - float(y);
+			if (picked >= 0) { 
+				//figures[picked]->move(int(ax),int(ay1) - int(ay));
+			}
+			gPress = true;
+		}
 		else if (figureSelected == LINE)
 		{
 			CLine *line = new CLine();
 			line->setVertex(0, ax, ay);
 			line->setVertex(1, ax, ay);
+			line->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(line);
 
 			gPress = true;
@@ -154,6 +165,7 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			CQuad *quad = new CQuad();
 			quad->setVertex(0, ax, ay);
 			quad->setVertex(1, ax, ay);
+			quad->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(quad);
 
 			gPress = true;
@@ -163,6 +175,7 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			Ccircle* circle = new Ccircle();
 			circle->setVertex(0, ax, ay);
 			circle->setVertex(1, ax, ay);
+			circle->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(circle);
 
 			gPress = true;
@@ -180,10 +193,24 @@ void cursorPos(GLFWwindow* window, double x, double y)
 
 	if (gPress)
 	{
-		float ax = float(x);
-		float ay = gHeight - float(y);
-		std::cout << "axis x: " << ax << " axis y: " << ay << std::endl;
-		figures.back()->setVertex(1, ax, ay);
+		if (figureSelected == NONE && picked >= 0) {
+			float ax = float(x);
+			float ay = gHeight - float(y);
+
+			int dx = int(ax) - int(ax1);
+			int dy = int(ay) - int(ay1);
+
+			ax1 = ax;
+			ay1 = ay;
+
+			figures[picked]->move(dx, dy);
+		}
+		else {
+			float ax = float(x);
+			float ay = gHeight - float(y);
+			std::cout << "axis x: " << ax << " axis y: " << ay << std::endl;
+			figures.back()->setVertex(1, ax, ay);
+		}
 	}
 }
 

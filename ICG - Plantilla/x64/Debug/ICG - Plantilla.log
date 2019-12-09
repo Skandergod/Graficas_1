@@ -1,4 +1,4 @@
 ﻿  Circle.cpp
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(33,23): warning C4244: '=': conversion from 'float' to 'GLint', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(37,23): warning C4244: '=': conversion from 'float' to 'GLint', possible loss of data
-  ICG - Plantilla.vcxproj -> C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\x64\Debug\ICG - Plantilla.exe
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Circle.cpp(33,23): warning C4244: '=': conversion from 'float' to 'GLint', possible loss of data
+C:\Users\Daniel\Desktop\Workbench\Graficas_1\src\Circle.cpp(37,23): warning C4244: '=': conversion from 'float' to 'GLint', possible loss of data
+  ICG - Plantilla.vcxproj -> C:\Users\Daniel\Desktop\Workbench\Graficas_1\x64\Debug\ICG - Plantilla.exe

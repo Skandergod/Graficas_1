@@ -24,7 +24,7 @@ void CQuad::display()
 		b[i] = new GLint[2];
 	}
 
-	glColor3fv(mColor);
+	//glColor3fv(mColor);
 
 	b[0][0] = (int)mVertices[0][0];
 	b[0][1] = (int)mVertices[0][1];
@@ -46,7 +46,7 @@ void CQuad::display()
 
 void CQuad::drawQuad(float **mVertices, int color, int form) {
 
-	glColor3f(0.0f,1.0f,0.0f);
+	//glColor3f(0.0f,1.0f,0.0f);
 	GLint* b[2];
 	for (int i = 0; i < 2; ++i) {
 		b[i] = new GLint[2];

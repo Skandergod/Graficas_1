@@ -43,7 +43,7 @@ void CLine::drawLine(int x1, int y1, int x2, int y2, int color, int form) {
 		b[i] = new GLint[2];
 	}
 
-	glColor3f(0.0f,1.0f,0.0f);
+	//glColor3f(0.0f,1.0f,0.0f);
 
 	b[0][0] = x1;
 	b[0][1] = y1;

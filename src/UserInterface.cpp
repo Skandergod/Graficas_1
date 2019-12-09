@@ -62,6 +62,18 @@ void CUserInterface::setFigureColor(float *color)
 	mFigureColor[2] = color[2];
 }
 
+float CUserInterface::getr() {
+	return mFigureColor[0];
+}
+
+float CUserInterface::getg() {
+	return mFigureColor[1];
+}
+
+float CUserInterface::getb() {
+	return mFigureColor[2];
+}
+
 void CUserInterface::setFigureType(string type)
 {
 	mFigureType = type;

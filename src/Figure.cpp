@@ -1,4 +1,5 @@
 #include "Figure.h"
+#include <iostream>
 
 CFigure::CFigure()
 {
@@ -15,6 +16,7 @@ void CFigure::setVertex(int id, float x, float y)
 {
 	mVertices[id][0] = x;
 	mVertices[id][1] = y;
+	nVer = id+1;
 }
 
 void CFigure::setColor(float r, float g, float b)
@@ -38,3 +40,15 @@ float* CFigure::getColor()
 {
 	return mColor;
 }
+
+void CFigure::move(int x, int y) {
+
+	for (int i = 0; i < nVer; i++) {
+		mVertices[i][0] += x;
+		//std::cout << "ax: " << mVertices[i][0] + x << std::endl;
+		mVertices[i][1] += y;
+		//std::cout << "ay: " << mVertices[i][1] + y << std::endl;
+	}
+
+
+};

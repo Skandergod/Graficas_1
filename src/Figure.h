@@ -15,6 +15,7 @@ class CFigure
 protected:
 	float **mVertices, mColor[3];
 	int mType;
+	int nVer;
 
 public:
 	CFigure();
@@ -25,4 +26,5 @@ public:
 	int getType();
 	float* getVertex(int id);
 	float* getColor();
+	void move(int x, int y);
 };

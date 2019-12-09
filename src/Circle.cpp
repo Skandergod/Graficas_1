@@ -78,7 +78,7 @@ void Ccircle::draw8points(int x1, int y1, int x2, int y2, int fill) {
 		
 	}
 
-	glColor3f(0.0f,1.0f,0.0f);
+	//glColor3f(0.0f,1.0f,0.0f);
 
 	glBegin(GL_POINTS);
 	glVertex2i(x1 + x2, y1 + y2);
