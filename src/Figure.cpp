@@ -52,3 +52,14 @@ void CFigure::move(int x, int y) {
 
 
 };
+
+void CFigure::setpicked(bool a) {
+
+	picked = a;
+
+}
+
+void CFigure::setfill(bool a) {
+
+	relleno = a;
+}

@@ -1,4 +1,5 @@
 #include "Line.h"
+#include "Quad.h"
 #include <iostream>
 
 CLine::CLine()
@@ -19,9 +20,9 @@ CLine::~CLine()
 void CLine::display()
 {
 	
-	GLint* b[2];
+	GLfloat* b[2];
 	for (int i = 0; i < 2; ++i) {
-		b[i] = new GLint[2];
+		b[i] = new GLfloat[2];
 	}
 	
 	glColor3fv(mColor);
@@ -32,6 +33,28 @@ void CLine::display()
 	b[1][1] = (int)mVertices[1][1];
 
 	drawLine(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
+
+	if (picked) {
+		int x, y;
+		b[0][0] = (int)mVertices[0][0];
+		b[0][1] = (int)mVertices[0][1];
+		b[1][0] = (int)mVertices[1][0];
+		b[1][1] = (int)mVertices[1][1];
+
+		if (b[1][0] > b[0][0]) {
+			x = b[0][0];
+			b[0][0] = b[1][0];
+			b[1][0] = x;
+		}
+
+		if (b[1][1] > b[0][1]) {
+			y = b[1][1];
+			b[1][1] = b[0][1];
+			b[0][1] = y;
+		}
+
+		CQuad::drawQuad(b, 0, 0);
+	}
 
 }
 

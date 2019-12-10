@@ -14,6 +14,8 @@ vector <CFigure *> figures;
 FigureType figureSelected;
 int picked;
 float ax1, ay1;
+bool fill;
+
 int pick(int x, int y)
 {
 	picked = -1;
@@ -28,30 +30,59 @@ int pick(int x, int y)
 
 		// This should be precalculated
 
-		max[0] = MAX(v1[0], v2[0]);
-		max[1] = MAX(v1[1], v2[1]);
+		
+		if (figures[i]->getType() == CIRCLE){
 
-		min[0] = MIN(v1[0], v2[0]);
-		min[1] = MIN(v1[1], v2[1]);
+			int rx, ry, r;
 
-		if (x >= min[0] && x <= max[0] && y >= min[1] && y <= max[1])
-		{
-			picked = i;
+			rx = v1[0] - v2[0];
+			if (rx < 0) {
+				rx = rx * -1;
+			}
+			ry = v1[1] - v2[1];
+			if (ry < 0) {
+				ry = ry * -1;
+			}
+			r = rx;
+			if (ry > rx) {
+				r = ry;
+			}
 
-			userInterface->setFigureColor(figures[picked]->getColor());
-			userInterface->show();
+			min[0] = (int)v1[0] - r;
+			max[1] = (int)v1[1] + r;
+			max[0] = (int)v2[0] + r;
+			min[1] = (int)v2[1] - r;
 
-			int type = figures[picked]->getType();
+		}else{
 
-			if (type == LINE)
-				userInterface->setFigureType("Line");
-			else
-				userInterface->setFigureType("Quad");
+			max[0] = MAX(v1[0], v2[0]);
+			max[1] = MAX(v1[1], v2[1]);
 
-
-			return picked;
-			break;
+			min[0] = MIN(v1[0], v2[0]);
+			min[1] = MIN(v1[1], v2[1]);
 		}
+			
+		if (x >= min[0] && x <= max[0] && y >= min[1] && y <= max[1]){
+
+				
+
+				picked = i;
+
+				userInterface->setFigureColor(figures[picked]->getColor());
+				userInterface->show();
+
+				int type = figures[picked]->getType();
+
+				if (type == LINE)
+					userInterface->setFigureType("Line");
+				else
+					userInterface->setFigureType("Quad");
+
+
+				return picked;
+				break;
+		}
+		
 	}
 
 	return -1;
@@ -105,7 +136,14 @@ void keyInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 		case GLFW_KEY_I:
 			std::cout << "esto es una prueba \n";
 			break;
-
+		case GLFW_KEY_F:
+			if (fill) {
+				fill = 0;
+			}
+			else {
+				fill = 1;
+			}
+			break;
 		case GLFW_KEY_C:
 			figureSelected = CIRCLE;
 			break;
@@ -142,19 +180,27 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 		float ay = gHeight - float(y);
 		
 		if (figureSelected == NONE) {
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
 			int picked = pick(int(ax), int(ay));
 			ax1 = float(x);
 			ay1 = gHeight - float(y);
 			if (picked >= 0) { 
-				//figures[picked]->move(int(ax),int(ay1) - int(ay));
+				figures[picked]->setpicked(1);
+				figures[picked]->setfill(fill);
 			}
 			gPress = true;
 		}
 		else if (figureSelected == LINE)
 		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
 			CLine *line = new CLine();
 			line->setVertex(0, ax, ay);
 			line->setVertex(1, ax, ay);
+			line->setfill(fill);
 			line->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(line);
 
@@ -162,9 +208,13 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 		}
 		else if(figureSelected == QUAD)
 		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
 			CQuad *quad = new CQuad();
 			quad->setVertex(0, ax, ay);
 			quad->setVertex(1, ax, ay);
+			quad->setfill(fill);
 			quad->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(quad);
 
@@ -172,9 +222,13 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 		}
 		else
 		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
 			Ccircle* circle = new Ccircle();
 			circle->setVertex(0, ax, ay);
 			circle->setVertex(1, ax, ay);
+			circle->setfill(fill);
 			circle->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
 			figures.push_back(circle);
 
@@ -206,10 +260,12 @@ void cursorPos(GLFWwindow* window, double x, double y)
 			figures[picked]->move(dx, dy);
 		}
 		else {
-			float ax = float(x);
-			float ay = gHeight - float(y);
-			std::cout << "axis x: " << ax << " axis y: " << ay << std::endl;
-			figures.back()->setVertex(1, ax, ay);
+			if (figureSelected != NONE) {
+				float ax = float(x);
+				float ay = gHeight - float(y);
+				std::cout << "axis x: " << ax << " axis y: " << ay << std::endl;
+				figures.back()->setVertex(1, ax, ay);
+			}
 		}
 	}
 }

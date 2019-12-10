@@ -27,4 +27,8 @@ public:
 	float* getVertex(int id);
 	float* getColor();
 	void move(int x, int y);
+	bool picked;
+	bool relleno;
+	void setpicked(bool a);
+	void setfill(bool a);
 };

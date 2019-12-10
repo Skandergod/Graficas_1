@@ -33,6 +33,20 @@ void CQuad::display()
 
 	drawQuad(mVertices, 0, 0);
 
+	if (relleno) {
+		int xmax = b[1][0], xmin = b[0][0];
+		int ymax = b[1][1], ymin = b[0][1];
+		if (b[0][0] > b[1][0]) {
+			xmin = b[1][0];
+			xmax = b[0][0];
+			ymin = b[1][1];
+			ymax = b[0][1];
+		}
+
+		for (int i = xmin; i <= xmax; i++) {
+			CLine::drawLine(i, ymin, i, ymax, 0, 0);
+		}
+	}
 	
 	/*glBegin(GL_POLYGON);
 	glVertex2fv(mVertices[0]);
