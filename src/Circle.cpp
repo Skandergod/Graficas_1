@@ -38,14 +38,8 @@ void Ccircle::display()
 	b[1][0] = (int)mVertices[1][0];
 	b[1][1] = (int)mVertices[1][1];
 
-	if (!picked) {
-
-		setMinAndMax();
-
-	}
-
 	rx = mVertices[0][0] - mVertices[1][0];
-	if(rx < 0){
+	if (rx < 0) {
 		rx = rx * -1;
 	}
 	ry = mVertices[0][1] - mVertices[1][1];
@@ -60,15 +54,21 @@ void Ccircle::display()
 	x = 0;
 	y = r;
 
+	minx = c[0][0] = mVertices[0][0] - r - 2;
+	miny = c[0][1] = mVertices[0][1] - r - 2;
+
+	maxx = c[1][0] = mVertices[0][0] + r + 2;
+	maxy = c[1][1] = mVertices[0][1] + r + 2;
+
+	if (!picked) {
+
+		//setMinAndMax();
+
+	}
+
 	drawCircle(b[0][0], b[0][1], x, y, r, 0);
 
 	if (picked) {
-
-		c[0][0] = mVertices[0][0] - r - 2;
-		c[0][1] = mVertices[0][1] - r - 2;
-
-		c[1][0] = mVertices[0][0] + r + 2;
-		c[1][1] = mVertices[0][1] + r + 2;
 
 		CQuad::drawQuad(c, 0, 0);
 	}

@@ -31,7 +31,9 @@ CUserInterface::CUserInterface()
 	TwDefine("Figure size = '220 320'");
 
 	TwAddVarRO(mUserInterface, "meshType", TW_TYPE_STDSTRING, &mFigureType, "label='Type' readonly=true");
-	TwAddVarRW(mUserInterface, "color", TW_TYPE_COLOR3F, &mFigureColor[0], "label = 'Color'");
+	TwAddVarRW(mUserInterface, "color", TW_TYPE_COLOR3F, &mFigureColor[0], "label = 'Color Boder'");
+	TwAddVarRW(mUserInterface, "color2", TW_TYPE_COLOR3F, &mBoundingColor[0], "label = 'Color Bounding'");
+	TwAddVarRW(mUserInterface, "color3", TW_TYPE_COLOR3F, &mFillColor[0], "label = 'Color Fill'");
 	TwAddVarRW(mUserInterface, "ObjRotation", TW_TYPE_QUAT4F, &g_Rotation,
 		" label='Object rotation' opened=true help='Change the object orientation.' ");
 }

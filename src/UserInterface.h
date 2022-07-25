@@ -14,6 +14,8 @@ private:
 	static CUserInterface * mInterface; //Holds the instance of the class
 	TwBar *mUserInterface;
 	float mFigureColor[3];
+	float mBoundingColor[3];
+	float mFillColor[3];
 	float g_Rotation[4];
 	string mFigureType;
 
@@ -25,6 +27,8 @@ public:
 	void show();
 	void hide();
 	void setFigureColor(float *color);
+	void setBoundingColor(float *color);
+	void setFillColor(float* color);
 	void setFigureType(string type);
 	float* getFigureColor();
 	float getr();

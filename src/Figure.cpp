@@ -50,7 +50,6 @@ void CFigure::move(int x, int y) {
 		//std::cout << "ay: " << mVertices[i][1] + y << std::endl;
 	}
 
-	setMinAndMax();
 };
 
 void CFigure::setMinAndMax() {

@@ -4,6 +4,7 @@
 #include "Circle.h"
 #include "UserInterface.h"
 #include "../../Triangle.h"
+#include "../ICG - Plantilla/Elipse.h"
 #include <iostream>
 using std::vector;
 
@@ -47,6 +48,8 @@ int pick(int x, int y)
 					userInterface->setFigureType("Triangle");
 				if (type == CIRCLE)
 					userInterface->setFigureType("Circle");
+				if (type == ELIPSE)
+					userInterface->setFigureType("Elipse");
 				else
 					userInterface->setFigureType("Quad");
 
@@ -246,6 +249,23 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			
 			//gPress = true;
 		}
+		else if (figureSelected == ELIPSE)
+		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
+			CElipse* elipse = new CElipse();
+			elipse->setVertex(0, ax, ay);
+			elipse->setVertex(1, ax, ay);
+			elipse->setfill(fill);
+			elipse->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+			figures.push_back(elipse);
+
+			gPress = true;
+
+
+			//gPress = true;
+		}
 		else
 		{
 			if (picked >= 0) {
@@ -260,6 +280,7 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 
 			gPress = true;
 		}
+
 	}
 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)

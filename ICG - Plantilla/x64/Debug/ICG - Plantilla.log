@@ -1,15 +1,2 @@
-﻿  Circle.cpp
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(36,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(37,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(38,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(39,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(47,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(51,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(56,6): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(58,7): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,37): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,34): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,31): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,28): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
-C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,19): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+﻿  UserInterface.cpp
   ICG - Plantilla.vcxproj -> C:\Users\Danielito\Desktop\Workbench\Graficas_1\x64\Debug\ICG - Plantilla.exe
