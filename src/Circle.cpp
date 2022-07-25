@@ -1,6 +1,7 @@
 #include "Circle.h"
 #include "Quad.h"
 #include "Line.h"
+#include <stdlib.h>
 
 Ccircle::Ccircle()
 {
@@ -21,8 +22,13 @@ void Ccircle::display()
 {
 
 	GLfloat* b[2], x, y, r;
+	GLfloat* c[2];
+
 	for (int i = 0; i < 2; ++i) {
 		b[i] = new GLfloat[2];
+	}
+	for (int i = 0; i < 2; ++i) {
+		c[i] = new GLfloat[2];
 	}
 
 	glColor3fv(mColor);
@@ -31,6 +37,12 @@ void Ccircle::display()
 	b[0][1] = (int)mVertices[0][1];
 	b[1][0] = (int)mVertices[1][0];
 	b[1][1] = (int)mVertices[1][1];
+
+	if (!picked) {
+
+		setMinAndMax();
+
+	}
 
 	rx = mVertices[0][0] - mVertices[1][0];
 	if(rx < 0){
@@ -47,18 +59,18 @@ void Ccircle::display()
 	}
 	x = 0;
 	y = r;
+
 	drawCircle(b[0][0], b[0][1], x, y, r, 0);
 
 	if (picked) {
-		int x, y;
-		b[0][0] = (int)mVertices[0][0] - r;
-		b[0][1] = (int)mVertices[0][1] + r;
-		b[1][0] = (int)mVertices[0][0] + r;
-		b[1][1] = (int)mVertices[0][1] - r;
 
-		
+		c[0][0] = mVertices[0][0] - r - 2;
+		c[0][1] = mVertices[0][1] - r - 2;
 
-		CQuad::drawQuad(b, 0, 0);
+		c[1][0] = mVertices[0][0] + r + 2;
+		c[1][1] = mVertices[0][1] + r + 2;
+
+		CQuad::drawQuad(c, 0, 0);
 	}
 
 }

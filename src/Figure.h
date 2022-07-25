@@ -1,19 +1,27 @@
 #pragma once
 
 #include "../headers/glfw3.h"
+#include <vector>
+
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
 
 enum FigureType
 {
 	NONE,
 	LINE,
 	QUAD,
-	CIRCLE
+	CIRCLE,
+	TRIANGLE,
+	ELIPSE
 };
 
 class CFigure
 {
-protected:
-	float **mVertices, mColor[3];
+public:
+
+	int minx, miny, maxx, maxy;
+	float** mVertices, mColor[3];
 	int mType;
 	int nVer;
 
@@ -31,4 +39,5 @@ public:
 	bool relleno;
 	void setpicked(bool a);
 	void setfill(bool a);
+	void setMinAndMax();
 };

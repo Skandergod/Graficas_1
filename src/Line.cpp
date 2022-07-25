@@ -21,8 +21,20 @@ void CLine::display()
 {
 	
 	GLfloat* b[2];
+	GLfloat* c[2];
+
 	for (int i = 0; i < 2; ++i) {
 		b[i] = new GLfloat[2];
+	}
+
+	for (int i = 0; i < 2; ++i) {
+		c[i] = new GLfloat[2];
+	}
+
+	if (!picked) {
+
+		setMinAndMax();
+
 	}
 	
 	glColor3fv(mColor);
@@ -35,25 +47,13 @@ void CLine::display()
 	drawLine(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
 
 	if (picked) {
-		int x, y;
-		b[0][0] = (int)mVertices[0][0];
-		b[0][1] = (int)mVertices[0][1];
-		b[1][0] = (int)mVertices[1][0];
-		b[1][1] = (int)mVertices[1][1];
 
-		if (b[1][0] > b[0][0]) {
-			x = b[0][0];
-			b[0][0] = b[1][0];
-			b[1][0] = x;
-		}
+		c[0][0] = minx - 2;
+		c[0][1] = miny - 2;
+		c[1][0] = maxx + 2;
+		c[1][1] = maxy + 2;
 
-		if (b[1][1] > b[0][1]) {
-			y = b[1][1];
-			b[1][1] = b[0][1];
-			b[0][1] = y;
-		}
-
-		CQuad::drawQuad(b, 0, 0);
+		CQuad::drawQuad(c, 0, 0);
 	}
 
 }
@@ -80,20 +80,20 @@ void CLine::drawLine(int x1, int y1, int x2, int y2, int color, int form) {
 
 		if (dx >= 0) {
 			if (dy <= dx) {
-				case1(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
+				case1(b[0][0], b[0][1], b[1][0], b[1][1], 0, form);
 			}
 			else {
-				case2(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
+				case2(b[0][0], b[0][1], b[1][0], b[1][1], 0, form);
 			}
 		}
 		else {
 			if (-dx <= dy) {
-				case4(b[1][0], b[1][1], b[0][0], b[0][1], 0, 0);
+				case4(b[1][0], b[1][1], b[0][0], b[0][1], 0, form);
 
 
 			}
 			else {
-				case3(b[1][0], b[1][1], b[0][0], b[0][1], 0, 0);
+				case3(b[1][0], b[1][1], b[0][0], b[0][1], 0, form);
 			}
 		}
 
@@ -102,22 +102,23 @@ void CLine::drawLine(int x1, int y1, int x2, int y2, int color, int form) {
 
 		if (dx >= 0) {
 			if (dx <= -dy) {
-				case4(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
+				case4(b[0][0], b[0][1], b[1][0], b[1][1], 0, form);
 			}
 			else {
-				case3(b[0][0], b[0][1], b[1][0], b[1][1], 0, 0);
+				case3(b[0][0], b[0][1], b[1][0], b[1][1], 0, form);
 			}
 		}
 		else {
 			if (-dx <= -dy) {
-				case2(b[1][0], b[1][1], b[0][0], b[0][1], 0, 0);
+				case2(b[1][0], b[1][1], b[0][0], b[0][1], 0, form);
 			}
 			else {
-				case1(b[1][0], b[1][1], b[0][0], b[0][1], 0, 0);
+				case1(b[1][0], b[1][1], b[0][0], b[0][1], 0, form);
 			}
 		}
 
 	}
+
 }
 
 void CLine::case1(int x1, int y1,int x2,int y2, int color, int form) { //M En [0,1]
@@ -135,7 +136,7 @@ void CLine::case1(int x1, int y1,int x2,int y2, int color, int form) { //M En [0
 	y0 = y1;
 
 	
-
+	
 	
 	glBegin(GL_POINTS);
 	
@@ -149,10 +150,18 @@ void CLine::case1(int x1, int y1,int x2,int y2, int color, int form) { //M En [0
 		if (d <= 0) {
 			d = d + incrNE;
 			y0 = y0 + 1;
+			if (form && x2 - x0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		//Pintar este
 		else {
 			d = d + incrE;
+			if (form && x2 - x0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		x0 = x0 + 1;
 		glVertex2i(x0, y0);
@@ -198,10 +207,18 @@ void CLine::case2(int x1, int y1, int x2, int y2, int color, int form) { //M En 
 		if (d <= 0) {
 			d = d + incrNE;
 			x0 = x0 + 1;
+			if (form && y2 - y0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		//Pintar este
 		else {
 			d = d + incrE;
+			if (form && y2 - y0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		y0 = y0 + 1;
 		glVertex2i(x0, y0);
@@ -227,9 +244,6 @@ void CLine::case3(int x1, int y1, int x2, int y2, int color, int form) {//m en [
 	x0 = x1;
 	y0 = y1;
 
-
-
-
 	glBegin(GL_POINTS);
 
 	//glColor3fv(mColor);
@@ -242,10 +256,18 @@ void CLine::case3(int x1, int y1, int x2, int y2, int color, int form) {//m en [
 		if (d <= 0) {
 			d = d + incrNE;
 			y0 = y0 - 1;
+			if (form && x2 - x0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		//Pintar este
 		else {
 			d = d + incrE;
+			if (form && x2 - x0 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		x0 = x0 + 1;
 		glVertex2i(x0, y0);
@@ -290,10 +312,19 @@ void CLine::case4(int x1, int y1, int x2, int y2, int color, int form) { //M En 
 		if (d <= 0) {
 			d = d + incrNE;
 			x0 = x0 + 1;
+			if (form && y0 - y2 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
+
 		}
 		//Pintar este
 		else {
 			d = d + incrE;
+			if (form && y0 - y2 > 2) {
+				glVertex2i(x0, y0 + 1);
+				glVertex2i(x0, y0 - 1);
+			}
 		}
 		y0 = y0 - 1;
 		glVertex2i(x0, y0);

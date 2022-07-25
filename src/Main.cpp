@@ -3,6 +3,7 @@
 #include "Quad.h"
 #include "Circle.h"
 #include "UserInterface.h"
+#include "../../Triangle.h"
 #include <iostream>
 using std::vector;
 
@@ -14,7 +15,10 @@ vector <CFigure *> figures;
 FigureType figureSelected;
 int picked;
 float ax1, ay1;
+float cax1, cay1, cax2, cay2, cax3, cay3;
 bool fill;
+
+int triangleClicks = 0;
 
 int pick(int x, int y)
 {
@@ -23,50 +27,14 @@ int pick(int x, int y)
 
 	for (int i = figures.size()-1; i >= 0; i--)
 	{
-		float *v1 = figures[i]->getVertex(0);
-		float *v2 = figures[i]->getVertex(1);
-		float max[2];
-		float min[2];
-
 		// This should be precalculated
 
-		
-		if (figures[i]->getType() == CIRCLE){
-
-			int rx, ry, r;
-
-			rx = v1[0] - v2[0];
-			if (rx < 0) {
-				rx = rx * -1;
-			}
-			ry = v1[1] - v2[1];
-			if (ry < 0) {
-				ry = ry * -1;
-			}
-			r = rx;
-			if (ry > rx) {
-				r = ry;
-			}
-
-			min[0] = (int)v1[0] - r;
-			max[1] = (int)v1[1] + r;
-			max[0] = (int)v2[0] + r;
-			min[1] = (int)v2[1] - r;
-
-		}else{
-
-			max[0] = MAX(v1[0], v2[0]);
-			max[1] = MAX(v1[1], v2[1]);
-
-			min[0] = MIN(v1[0], v2[0]);
-			min[1] = MIN(v1[1], v2[1]);
-		}
 			
-		if (x >= min[0] && x <= max[0] && y >= min[1] && y <= max[1]){
-
-				
+		if (x >= figures[i]->minx && x <= figures[i]->maxx && y >= figures[i]->miny && y <= figures[i]->maxy){
 
 				picked = i;
+				
+				std::cout << figures[i]->minx << ", " << figures[i]->miny << ", " << figures[i]->maxx << ", " << figures[i]->maxy << std::endl;
 
 				userInterface->setFigureColor(figures[picked]->getColor());
 				userInterface->show();
@@ -75,6 +43,10 @@ int pick(int x, int y)
 
 				if (type == LINE)
 					userInterface->setFigureType("Line");
+				if (type == TRIANGLE)
+					userInterface->setFigureType("Triangle");
+				if (type == CIRCLE)
+					userInterface->setFigureType("Circle");
 				else
 					userInterface->setFigureType("Quad");
 
@@ -162,7 +134,18 @@ void keyInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 			figureSelected = QUAD;
 			//userInterface->hide();
 			break;
+		case GLFW_KEY_E:
+			figureSelected = ELIPSE;
+			//userInterface->hide();
+			break;
+
+		case GLFW_KEY_T:
+			figureSelected = TRIANGLE;
+			//userInterface->hide();
+			break;
 		}
+
+
 	}
 }
 
@@ -220,6 +203,49 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 
 			gPress = true;
 		}
+		else if (figureSelected == TRIANGLE)
+		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
+
+			if (triangleClicks == 0) {
+				cax1 = ax;
+				cay1 = ay;
+				
+			}
+
+			if (triangleClicks == 1) {
+				cax2 = ax;
+				cay2 = ay;
+				
+			}
+
+			if (triangleClicks == 2) {
+				cax3 = ax;
+				cay3 = ay;
+				
+
+				CTriangle* triangle = new CTriangle();
+				triangle->setVertex(0, cax1, cay1);
+				triangle->setVertex(1, cax2, cay2);
+				triangle->setVertex(2, cax3, cay3);
+
+				triangle->setfill(fill);
+				triangle->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+				figures.push_back(triangle);
+
+			}
+
+			triangleClicks++;
+
+			if (triangleClicks == 3) {
+				triangleClicks = 0;
+			}
+			
+			
+			//gPress = true;
+		}
 		else
 		{
 			if (picked >= 0) {
@@ -263,7 +289,6 @@ void cursorPos(GLFWwindow* window, double x, double y)
 			if (figureSelected != NONE) {
 				float ax = float(x);
 				float ay = gHeight - float(y);
-				std::cout << "axis x: " << ax << " axis y: " << ay << std::endl;
 				figures.back()->setVertex(1, ax, ay);
 			}
 		}

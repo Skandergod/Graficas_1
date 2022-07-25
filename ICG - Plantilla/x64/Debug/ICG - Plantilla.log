@@ -1,17 +1,15 @@
 ﻿  Circle.cpp
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(30,31): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(31,31): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(32,31): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(33,31): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(35,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(39,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(44,6): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(46,7): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(50,37): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(50,34): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(50,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(50,28): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(50,19): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(53,10): warning C4101: 'y': unreferenced local variable
-C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\src\Circle.cpp(53,7): warning C4101: 'x': unreferenced local variable
-  ICG - Plantilla.vcxproj -> C:\Users\skandergod\Desktop\ICG--Proyecto1\Graficas_1\x64\Debug\ICG - Plantilla.exe
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(36,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(37,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(38,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(39,31): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(47,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(51,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(56,6): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(58,7): warning C4244: '=': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,37): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,34): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,31): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,28): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+C:\Users\Danielito\Desktop\Workbench\Graficas_1\src\Circle.cpp(63,19): warning C4244: 'argumento': conversión de 'GLfloat' a 'int'; posible pérdida de datos
+  ICG - Plantilla.vcxproj -> C:\Users\Danielito\Desktop\Workbench\Graficas_1\x64\Debug\ICG - Plantilla.exe

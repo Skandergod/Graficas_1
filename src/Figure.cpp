@@ -50,8 +50,35 @@ void CFigure::move(int x, int y) {
 		//std::cout << "ay: " << mVertices[i][1] + y << std::endl;
 	}
 
-
+	setMinAndMax();
 };
+
+void CFigure::setMinAndMax() {
+
+	minx = mVertices[0][0];
+	miny = mVertices[0][1];
+
+	maxx = mVertices[0][0];
+	maxy = mVertices[0][1];
+
+	for (int i = 0; i < nVer; i++) {
+		minx = MIN(mVertices[i][0], minx);
+	}
+
+	for (int i = 1; i < nVer; i++) {
+		miny = MIN(mVertices[i][1], miny);
+	}
+
+	for (int i = 1; i < nVer; i++) {
+		maxx = MAX(mVertices[i][0], maxx);
+	}
+
+	for (int i = 1; i < nVer; i++) {
+		maxy = MAX(mVertices[i][1], maxy);
+	}
+
+}
+
 
 void CFigure::setpicked(bool a) {
 
