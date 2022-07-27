@@ -69,7 +69,7 @@ void CTriangle::display()
 
 		for (int w = 0; w < 2; w++) {
 			
-			std::cout << "Cateto " << w << "Cateto " << w + 1 << std::endl;
+			//std::cout << "Cateto " << w << "Cateto " << w + 1 << std::endl;
 
 			for (int i = 0; i < rectas[w].size(); ++i) {
 				for (int j = 0; j < rectas[w + 1].size(); ++j) {
@@ -80,10 +80,10 @@ void CTriangle::display()
 				}
 			}
 
-			std::cout << "Cambio" << std::endl;
+			//std::cout << "Cambio" << std::endl;
 			if (w == 1) {
 
-				std::cout << "Cateto " << w - 1 << "Cateto " << w + 1 << std::endl;
+				//std::cout << "Cateto " << w - 1 << "Cateto " << w + 1 << std::endl;
 
 				for (int i = 0; i < rectas[w-1].size(); ++i) {
 					for (int j = 0; j < rectas[w + 1].size(); ++j) {
@@ -244,7 +244,7 @@ void CTriangle::case1(int x1, int y1, int x2, int y2, int color, int id, int for
 
 
 	glBegin(GL_POINTS);
-	glPointSize(2);
+	glPointSize(1);
 	//glColor3fv(mColor);
 	glVertex2i(x1, y1);
 
@@ -299,7 +299,7 @@ void CTriangle::case2(int x1, int y1, int x2, int y2, int color, int id, int for
 
 	//glColor3fv(mColor);
 	//glColor3fv(mColor);.
-	glPointSize(2);
+	glPointSize(1);
 	glVertex2i(x1, y1);
 
 	//glColor3fv(mFillColor);
@@ -346,7 +346,7 @@ void CTriangle::case3(int x1, int y1, int x2, int y2, int color, int id, int for
 
 
 	glBegin(GL_POINTS);
-	glPointSize(2);
+	glPointSize(1);
 	//glColor3fv(mColor);
 	//glColor3fv(mColor);
 	glVertex2i(x1, y1);
@@ -404,7 +404,7 @@ void CTriangle::case4(int x1, int y1, int x2, int y2, int color, int id, int for
 	//glColor3fv(mColor);
 
 	//glColor3fv(mColor);
-	glPointSize(2);
+	glPointSize(1);
 	glVertex2i(x1, y1);
 
 	//glColor3fv(mFillColor);
