@@ -6,6 +6,7 @@
 #include "../../Triangle.h"
 #include "../ICG - Plantilla/Elipse.h"
 #include <iostream>
+#include "../ICG - Plantilla/Curve.h"
 using std::vector;
 
 GLFWwindow *gWindow;
@@ -17,6 +18,8 @@ FigureType figureSelected;
 int picked;
 float ax1, ay1;
 float cax1, cay1, cax2, cay2, cax3, cay3;
+int nCurves = 0;
+float nCurvesPoints[20][20];
 bool fill;
 
 int triangleClicks = 0;
@@ -35,9 +38,9 @@ int pick(int x, int y)
 
 				picked = i;
 				
-				std::cout << figures[i]->minx << ", " << figures[i]->miny << ", " << figures[i]->maxx << ", " << figures[i]->maxy << std::endl;
-
 				userInterface->setFigureColor(figures[picked]->getColor());
+				userInterface->setBoundingColor(figures[picked]->getColorBounding());
+				userInterface->setFillColor(figures[picked]->getColorFill());
 				userInterface->show();
 
 				int type = figures[picked]->getType();
@@ -49,6 +52,8 @@ int pick(int x, int y)
 				if (type == CIRCLE)
 					userInterface->setFigureType("Circle");
 				if (type == ELIPSE)
+					userInterface->setFigureType("Elipse");
+				if (type == CURVE)
 					userInterface->setFigureType("Elipse");
 				else
 					userInterface->setFigureType("Quad");
@@ -68,13 +73,17 @@ void updateUserInterface()
 	if (picked > -1)
 	{
 		float * color = userInterface->getFigureColor();
+		float* color2 = userInterface->getFillColor();
+		float* color3 = userInterface->getBoundingColor();
 		figures[picked]->setColor(color[0], color[1], color[2]);
+		figures[picked]->setColorFill(color2[0], color2[1], color2[2]);
+		figures[picked]->setColorBounding(color3[0], color3[1], color3[2]);
 	}
 }
 
 void display()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0);
+	glClearColor(userInterface->getrbackground(), userInterface->getgbackground(), userInterface->getbbackground(), 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	for (unsigned int i = 0; i < figures.size(); i++)
@@ -119,31 +128,47 @@ void keyInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 				fill = 1;
 			}
 			break;
-		case GLFW_KEY_C:
+		case GLFW_KEY_2:
 			figureSelected = CIRCLE;
 			break;
 
-		case GLFW_KEY_P:
+		case GLFW_KEY_6:
+			figureSelected = CURVE;
+			break;
+
+		case GLFW_KEY_U:
 			figureSelected = NONE;
 			//userInterface->hide();
 			break;
 
-		case GLFW_KEY_L:
+		case GLFW_KEY_1:
 			figureSelected = LINE;
 			//userInterface->hide();
 			break;
 
-		case GLFW_KEY_Q:
+		case GLFW_KEY_4:
 			figureSelected = QUAD;
 			//userInterface->hide();
 			break;
-		case GLFW_KEY_E:
+		case GLFW_KEY_3:
 			figureSelected = ELIPSE;
 			//userInterface->hide();
 			break;
 
-		case GLFW_KEY_T:
+		case GLFW_KEY_5:
 			figureSelected = TRIANGLE;
+			//userInterface->hide();
+			break;
+
+		case GLFW_KEY_X:
+			
+			figures.clear();
+			
+			//userInterface->hide();
+			break;
+
+		case GLFW_KEY_KP_SUBTRACT:
+
 			//userInterface->hide();
 			break;
 		}
@@ -159,6 +184,37 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 
 	double x, y;
 	glfwGetCursorPos(gWindow, &x, &y);
+
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS && !gPress) {
+
+		if (figureSelected == CURVE)
+		{
+			if (nCurves != 0) {
+
+				if (picked >= 0) {
+					figures[picked]->setpicked(0);
+				}
+				CCurve* curve = new CCurve();
+
+
+				for (int i = 0; i < nCurves; ++i) {
+					curve->setVertex(i, nCurvesPoints[i][0], nCurvesPoints[i][1]);
+					
+				}
+
+				curve->setfill(fill);
+				curve->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+				curve->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+				curve->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
+				figures.push_back(curve);
+				nCurves = 0;
+
+			}
+
+			//gPress = true;
+		}
+
+	}
 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && !gPress)
 	{
@@ -187,7 +243,10 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			line->setVertex(0, ax, ay);
 			line->setVertex(1, ax, ay);
 			line->setfill(fill);
-			line->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+			line->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+			line->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+			line->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
+
 			figures.push_back(line);
 
 			gPress = true;
@@ -201,16 +260,15 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			quad->setVertex(0, ax, ay);
 			quad->setVertex(1, ax, ay);
 			quad->setfill(fill);
-			quad->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+			quad->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+			quad->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+			quad->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
 			figures.push_back(quad);
 
 			gPress = true;
 		}
 		else if (figureSelected == TRIANGLE)
 		{
-			if (picked >= 0) {
-				figures[picked]->setpicked(0);
-			}
 
 			if (triangleClicks == 0) {
 				cax1 = ax;
@@ -235,7 +293,9 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 				triangle->setVertex(2, cax3, cay3);
 
 				triangle->setfill(fill);
-				triangle->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+				triangle ->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+				triangle->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+				triangle->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
 				figures.push_back(triangle);
 
 			}
@@ -249,6 +309,21 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			
 			//gPress = true;
 		}
+		else if (figureSelected == CURVE)
+		{
+			if (picked >= 0) {
+				figures[picked]->setpicked(0);
+			}
+			
+			
+			nCurvesPoints[nCurves][0] = ax;
+			nCurvesPoints[nCurves][1] = ay;
+
+			nCurves++;
+
+
+			//gPress = true;
+		}
 		else if (figureSelected == ELIPSE)
 		{
 			if (picked >= 0) {
@@ -258,7 +333,9 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 			elipse->setVertex(0, ax, ay);
 			elipse->setVertex(1, ax, ay);
 			elipse->setfill(fill);
-			elipse->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+			elipse->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+			elipse->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+			elipse->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
 			figures.push_back(elipse);
 
 			gPress = true;
@@ -269,13 +346,18 @@ void mouseButton(GLFWwindow* window, int button, int action, int mods)
 		else
 		{
 			if (picked >= 0) {
+				if(picked != 0){
+					figures[picked]->setpicked(0);
+				}
 				figures[picked]->setpicked(0);
 			}
 			Ccircle* circle = new Ccircle();
 			circle->setVertex(0, ax, ay);
 			circle->setVertex(1, ax, ay);
 			circle->setfill(fill);
-			circle->setColor(userInterface->getr(), userInterface->getg(), userInterface->getb());
+			circle->setColor(userInterface->getrF(), userInterface->getgF(), userInterface->getbF());
+			circle->setColorFill(userInterface->getrfill(), userInterface->getgfill(), userInterface->getbfill());
+			circle->setColorBounding(userInterface->getrB(), userInterface->getgB(), userInterface->getbB());
 			figures.push_back(circle);
 
 			gPress = true;

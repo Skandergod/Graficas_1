@@ -16,6 +16,7 @@ private:
 	float mFigureColor[3];
 	float mBoundingColor[3];
 	float mFillColor[3];
+	float fill[3];
 	float g_Rotation[4];
 	string mFigureType;
 
@@ -31,9 +32,20 @@ public:
 	void setFillColor(float* color);
 	void setFigureType(string type);
 	float* getFigureColor();
-	float getr();
-	float getg();
-	float getb();
+	float* getFillColor();
+	float* getBoundingColor();
+	float getrF();
+	float getgF();
+	float getbF();
+	float getrB();
+	float getgB();
+	float getbB();
+	float getrfill();
+	float getgfill();
+	float getbfill();
+	float getrbackground();
+	float getgbackground();
+	float getbbackground();
 
 private:
 	///Private constructor

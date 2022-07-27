@@ -31,20 +31,22 @@ void CElipse::display()
 	maxx = mVertices[0][0] + a + 2;
 	maxy = mVertices[0][1] + b + 2;
 
+	for (int i = 0; i < 2; ++i) {
+		c[i] = new GLfloat[2];
+	}
+
 	c[0][0] = minx;
 	c[0][1] = miny;
 	c[1][0] = maxx;
 	c[1][1] = maxy;
 	
-	for (int i = 0; i < 2; ++i) {
-		c[i] = new GLfloat[2];
-	}
+	
 
 	drawElipse(mVertices, 0, 0, relleno);
 
-	std::cout << picked << std::endl;
 	if (picked) {
 
+		glColor3fv(mBoundingColor);
 		CQuad::drawQuad(c, 0, 0);
 
 	}
@@ -100,11 +102,13 @@ void CElipse::pintar4(int x, int y, int x1, int y1, int relleno) {
 
 	if (relleno) {
 
+		glColor3fv(mFillColor);
 		CLine::drawLine(x1 + x, y1 + y, x1 - x, y1 + y,0,0);
 		CLine::drawLine(x1 + x, y1 - y, x1 - x, y1 - y,0,0);
 
 	}
 
+	glColor3fv(mColor);
 	glBegin(GL_POINTS);
 
 	glVertex2i(x1 + x, y1 + y);

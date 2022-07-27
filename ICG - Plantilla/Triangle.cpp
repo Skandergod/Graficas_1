@@ -23,7 +23,7 @@ CTriangle::~CTriangle()
 
 void CTriangle::display()
 {
-	glColor3fv(mColor);
+	
 	GLint* b[3];
 	GLfloat* c[3];
 	int xMax, yMax, xMin, yMin;
@@ -55,10 +55,11 @@ void CTriangle::display()
 	c[2][0] = (int)mVertices[2][0];
 	c[2][1] = (int)mVertices[2][1];
 
-	drawTriangle(mVertices, 0, 0);
+	
 	
 	if (relleno) {
 
+		glColor3fv(mFillColor);
 		int i, j;
 		int midx = ((int)mVertices[0][0] + (int)mVertices[1][0] + (int)mVertices[2][0]) / 3;
 		int midy = ((int)mVertices[0][1] + (int)mVertices[1][1] + (int)mVertices[2][2]) / 3;
@@ -118,7 +119,14 @@ void CTriangle::display()
 		
 	}
 
+	glColor3fv(mColor);
+
+	drawTriangle(mVertices, 0, 0);
+	
+
 	if (picked) {
+
+		glColor3fv(mBoundingColor);
 
 		float xmax, xmin;
 		float ymax, ymin;

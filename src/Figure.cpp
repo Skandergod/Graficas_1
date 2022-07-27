@@ -26,6 +26,21 @@ void CFigure::setColor(float r, float g, float b)
 	mColor[2] = b;
 }
 
+void CFigure::setColorFill(float r, float g, float b)
+{
+	mFillColor[0] = r;
+	mFillColor[1] = g;
+	mFillColor[2] = b;
+}
+
+void CFigure::setColorBounding(float r, float g, float b)
+{
+	mBoundingColor[0] = r;
+	mBoundingColor[1] = g;
+	mBoundingColor[2] = b;
+}
+
+
 int CFigure::getType()
 {
 	return mType;
@@ -39,6 +54,16 @@ float* CFigure::getVertex(int id)
 float* CFigure::getColor()
 {
 	return mColor;
+}
+
+float* CFigure::getColorFill()
+{
+	return mFillColor;
+}
+
+float* CFigure::getColorBounding()
+{
+	return mBoundingColor;
 }
 
 void CFigure::move(int x, int y) {

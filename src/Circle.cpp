@@ -60,17 +60,14 @@ void Ccircle::display()
 	maxx = c[1][0] = mVertices[0][0] + r + 2;
 	maxy = c[1][1] = mVertices[0][1] + r + 2;
 
-	if (!picked) {
-
-		//setMinAndMax();
-
-	}
 
 	drawCircle(b[0][0], b[0][1], x, y, r, 0);
 
 	if (picked) {
 
+		glColor3fv(mBoundingColor);
 		CQuad::drawQuad(c, 0, 0);
+
 	}
 
 }
@@ -104,6 +101,8 @@ void Ccircle::drawCircle(int x1, int y1, int x2, int y2, int r, int fill) {
 void Ccircle::draw8points(int x1, int y1, int x2, int y2, int fill) {
 	
 	if (relleno) {
+
+		glColor3fv(mFillColor);
 		drawLine(x1 - x2, x1 + x2 + 1, y1 + y2 - 1);
 		drawLine(x1 - y2 + 1, x1 + y2, y1 + x2);
 		drawLine(x1 - y2 + 1, x1 + y2, y1 - x2);
@@ -112,6 +111,7 @@ void Ccircle::draw8points(int x1, int y1, int x2, int y2, int fill) {
 
 	//glColor3f(0.0f,1.0f,0.0f);
 
+	glColor3fv(mColor);
 	glBegin(GL_POINTS);
 	glVertex2i(x1 + x2, y1 + y2);
 	glVertex2i(x1 + x2, y1 - y2);

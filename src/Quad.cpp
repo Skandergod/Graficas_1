@@ -18,10 +18,12 @@ CQuad::~CQuad()
 
 void CQuad::display()
 {
-	glColor3fv(mColor);
+	
 	GLint* b[2];
 	GLfloat* c[2];
 	
+	setMinAndMax();
+
 	for (int i = 0; i < 2; ++i) {
 		b[i] = new GLint[2];
 	}
@@ -32,7 +34,7 @@ void CQuad::display()
 
 	if (!picked) {
 
-		setMinAndMax();
+		//setMinAndMax();
 
 	}
 	//glColor3fv(mColor);
@@ -42,15 +44,19 @@ void CQuad::display()
 	b[1][0] = (int)mVertices[1][0];
 	b[1][1] = (int)mVertices[1][1];
 
-	drawQuad(mVertices, 0, 0);
+	
 
 	if (relleno) {
 
+		glColor3fv(mFillColor);
 		for (int i = minx; i <= maxx; i++) {
 			CLine::drawLine(i, miny, i, maxy, 0, 0);
 		}
 	}
 	
+	glColor3fv(mColor);
+	drawQuad(mVertices, 0, 0);
+
 	if (picked) {
 
 
@@ -59,6 +65,7 @@ void CQuad::display()
 		c[1][0] = maxx + 2;
 		c[1][1] = maxy + 2;
 
+		glColor3fv(mBoundingColor);
 		CQuad::drawQuad(c, 0, 0);
 
 	}
