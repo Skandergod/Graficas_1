@@ -3,7 +3,7 @@
 #include "Quad.h"
 #include "Circle.h"
 #include "UserInterface.h"
-#include "../../Triangle.h"
+#include "../ICG - Plantilla/Triangle.h"
 #include "../ICG - Plantilla/Elipse.h"
 #include <iostream>
 #include "../ICG - Plantilla/Curve.h"
